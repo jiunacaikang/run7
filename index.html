@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=640,target-densitydpi=device-dpi,user-scalable=no" /> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <title>RUN！7号皇牌</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6d408053eececa178633f81618c91853";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+<body>
+    <!-- audio -->
+    <audio id='mp3' src="mp3/mp3.mp3" preload="preload" loop></audio>
+    <audio id='carOpen' src="mp3/carOpen.mp3"></audio>
+    <audio id='key' src="mp3/key.mp3" preload="preload" loop></audio>
+    <audio id='bangzhu' src="mp3/bangzhu.mp3"></audio>
+    <audio id='tianchuang' src="mp3/tianchuang.mp3"></audio>
+    <audio id='girl' src="mp3/girl.mp3"></audio>
+    <audio id='jinqiu' src="mp3/jinqiu.mp3"></audio>
+    <audio id='mima' src="mp3/mima.mp3"></audio>
+
+    <span class="sound-on" style="display:none;"></span>
+
+    <!-- loading -->
+    <div class="loading" id="loading" style="display: block;">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+        <p>0%</p>
+    </div>
+
+    <!-- 分享页面 -->
+    <div id='share_page' class="share_page" style="display:none;">
+        <div class="share_img"><img src="images/11.png" width="100%"/></div>
+    </div>
+
+    <!-- 倒计时 -->
+    <div id="time" style="display:none;">
+        <div class="Countdown">
+          <span id="m">03</span><span class="bd">:</span><span id="s">00</span>
+        </div>
+    </div>
+    <!-- 弹层 -->
+    <div id='popBox' class="popBox" style="display:none;">
+        <div class="popBoxCon fridgePop" style="display:none;"><img src="images/fridge.png" width="100%" alt=""></div>
+    </div>
+    <div id='popBox2' class="popBox2" style="display:none;">
+        <div class="popBoxCon2 fridgePop2" style="display:none;"><img src="images/tv02.png" width="100%" alt=""></div>
+    </div>
+    <div id='popBox3' class="popBox3" style="display:none;">
+        <div class="popBoxCon3 fridgePop3" style="display:none;"><img src="images/basketVRbg01.png" width="100%" alt=""></div>
+    </div>
+    <!-- 信息提示框 -->
+    <div id='popBox4' class="popBox4">
+        <div class="msgBox" style="display:none;"></div>
+    </div>
+    
+    <div id='popBox5' class="popBox5" style="display:none;">
+        <div class="popBoxCon5 fridgePop5" style="display:none;"><img src="images/success01.png" width="100%" height="100%;" alt=""></div>
+        <div class="ballbox">
+            <img class="ballbg" src="images/success02.png" alt="">
+        </div>
+
+        <div class="resultSuc" style="display:block;">
+            <div class="resultbg1" style="display:block;"><img src="images/result-bg.png" width="100%" alt=""></div>
+            <div class="buttons">
+                <img data-class='congwanBtn' class="congwanBtn click"  src="images/chongxinkaishi.png" alt="">
+                <img class="choujiangBtn" src="images/result-2.png" alt="">
+            </div>
+            <!-- <div class="nameMsg"><span>姓名</span><input type="text"></div>
+            <div class="phoneMsg"><span>联系电话</span><input type="text"></div>
+            <div class="tijiaoBtn"><img src="images/result-3.png" alt=""></div> -->
+        </div>
+    </div>
+    <!-- 密码相关 -->
+    <div id='popBox6' class="popBox6" style="display:none;">
+        <div class="popBoxCon6"><img src="images/mima.png" alt=""></div>
+        <div class="top4">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="bottom9">
+            <span data-num="1"></span>
+            <span data-num="2"></span>
+            <span data-num="3"></span>
+            <span data-num="4"></span>
+            <span data-num="5"></span>
+            <span data-num="6"></span>
+            <span data-num="7"></span>
+            <span data-num="8"></span>
+            <span data-num="9"></span>
+            <span data-num="*"></span>
+            <span data-num="0"></span>
+            <span data-num="-"></span>
+        </div>
+        <div class="msgBox42" style="display:none;">
+            <div class="mimaMsgCon"></div>   
+            <div data-class='rePlay' class="fanhuidating click"></div>
+        </div>
+    </div>
+    
+    
+    <!-- 主页面 -->
+    <div id="wrap">
+        <!-- 落地页 -->
+        <div class="page landing" style="display:block;">
+            <div class="words"></div>
+            <div data-class="landBtn" class="landingBtn  click"><img src="images/begin-btn.png"></div>
+        </div>
+        <!-- 场景1 -->
+        <div class="page page1" style="display:none;">
+            <img class="shouyeBg shouyeBg01" src="images/shouye-bg.png" >
+            <img class='shouyeBg shouyeBg02' style="display:none" src="images/shouye-bg02.png" >
+            <!-- 水果篮 -->
+            <div class="basketImg01"></div>
+            <div class="basketImg02"></div>
+            <!-- 电视 -->
+    
+            <!-- 沙发 -->
+            <div data-class='shafa' class="baidian click shafa" style="display:none;">
+                <span><i></i></span>
+            </div>
+            <!-- 汽车 -->
+            <div data-class='car' class="baidian click car" style="display:none;">
+                <span><i></i></span>
+            </div>
+            <div data-class='basket' class="baidian click basket" style="display:none;">
+                <span><i></i></span>
+            </div>
+            <div data-class='vr' class="baidian click vr" style="display:none;">
+                <span><i></i></span>
+            </div>
+            <div data-class='tv' class="baidian click tv" style="display:none;">
+                <span><i></i></span>
+            </div>
+            <div data-class='fridge' class="baidian click fridge" style="display:none;">
+                <span><i></i></span>
+            </div>
+            <div data-class='mimamen' class="baidian click mimamen" style="display:none;">
+                <span><i></i></span>
+            </div>
+        </div>
+
+        <!-- 失败 -->
+        <div id='popBox9' class="popBox9" style="display:none;">
+            <div class="resultFail" style="display:none;">
+                <div class="resultbg2" style="display:block;"><img src="images/result-bg2.png" width="100%" alt=""></div>
+                <div class="buttons">
+                    <img data-class='congwanBtn' class="congwanBtn click"  src="images/chongxinkaishi.png" alt="">
+                    <img class="choujiangBtn" src="images/result-2.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- 场景2 -->
+        <div class="page page2" style="display:none">
+            <img class="scene2Bg scene2Bg01" src="images/scene2Bg01.png" >
+            <img class="scene2Bg scene2Bg02" src="images/scene2Bg02.png" >
+            <div class="newScreen" style="display:none">
+                <div class="newScreenCon"><img src="images/carScreen.png" width="70%" alt=""></div>
+            </div>
+            <div class="carMsg" style="display:none">
+                <div class="carMusicbg"><img src="images/carMusicbg.png" width="50" alt=""></div>
+                <div class="carMsgCon"></div>
+                <div class="voiceBox">
+                    <div class="voice">
+                        <div class="voice01 v">
+                            <div class="voice02 v">
+                                <div class="voice03 v"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="voice voiceb">
+                        <div class="voicebCon">
+                            <div class="voice01 v">
+                                <div class="voice02 v">
+                                    <div class="voice03 v"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-class="openWindowBtn" class="openWindowBtn click" style="display:none"></div>
+            </div>
+            <div data-class='carScreen' class="baidian click carScreen">
+                <span><i></i></span>
+            </div>
+            <div data-class='carWheel' class="baidian click carWheel" style="display:none;">
+                <span><i></i></span>
+            </div>
+        </div>
+        <a href="javascript:;" name="maodian" id='maodian' style="position:absolute;left:50%;top:50%;width:20px;height:20px;display:block"></a>
+   </div>
+</body>
+
+<script src="js/jquery-1.8.3.min.js"></script>
+<!-- <script type="text/javascript" src="js/zepto.min.js"></script> -->
+<script type="text/javascript" src="js/config.js"></script>
+<script type="text/javascript" src="js/PxLoader.js"></script>
+<script src="js/weixinjs.js"></script>
+</html>
+<script type="text/javascript">
+    var key = $("#key")[0];
+    var wordsL = 0;
+    var timer = null;
+    var words = ['2','0','1','6','世','俱','杯','决','赛','还','有','一','小','时','零','三','分','。','<br>','王','牌','7','号','队','员','被','对','手','关','在','距','离','赛','场','1','小','时','车','程','密','室','内','…','<br>','你','只','能','通','过','熟','练','使','用','密','室','内','Y','u','n','O','S','产','品','获','得','密','码','。','<br>','3','分','钟','之','内','务','必','完','成','。'];
+
+    function writeWord(el,words,hideEl){
+        if(wordsL>=words.length){
+            clearInterval(timer);
+            timer = null;
+            key.pause();
+            $(".landingBtn").addClass('beginBtn');
+            setTimeout(function(){hideEl&&$("."+hideEl).stop().fadeOut(500);}, 500);
+            return;
+        }
+        $("."+el).append(words[wordsL]);
+        wordsL ++ ;
+    }
+    function writeNewWord(el,words,hideEl){
+        clearInterval(timer);
+        
+        hideEl&&$("."+hideEl).stop().fadeIn(500);
+        wordsL = 0;
+        $("."+el).text('');
+        timer = setInterval(function(){
+            writeWord(el,words,hideEl);
+        }, 100);
+    }
+</script>
+
+<script type="text/javascript">
+    // 实例化
+    var loader = new PxLoader();
+    
+    // 插入数据
+    var pageArray = [
+            'js/jquery-1.8.3.min.js',
+            'js/PxLoader.js',
+            'js/weixinjs.js',
+            
+            'images/shouye-bg.png',
+            'images/baidian.png',
+            'images/basket01.png',
+            'images/basketVR.png',
+            'images/basketVRbg01.png',
+            'images/begin-btn.png',
+            'images/carScreen.png',
+            'images/chakan.png',
+            'images/fanhuiBtn.png',
+            'images/fridge.png',
+            'images/mima.png',
+            'images/openBtn.png',
+            'images/result-1.png',
+            'images/result-2.png',
+
+            'images/result-3.png',
+            'images/result-bg.png',
+            'images/result-bg2.png',
+            'images/scene2Bg01.png',
+            'images/scene2Bg02.png',
+            'images/shouye-bg.png',
+            'images/shouye-bg02.png',
+            'images/success01.png', 
+            'images/success02.png',   
+            'images/tv02.png',  
+            'images/tv03.png', 
+            'images/xunzhaoBtn.png',            
+
+            'images/carMusicbg.png',
+            'images/voice2.png',
+
+            'mp3/bangzhu.mp3',
+            'mp3/carOpen.mp3',
+            'mp3/girl.mp3',
+            'mp3/mp3.mp3',
+            'mp3/tianchuang.mp3',
+            'mp3/jinqiu.mp3',
+            'mp3/mima.mp3',
+            'mp3/bangzhu.mp3',
+            'mp3/key.mp3'
+
+        ];
+    for(i = 0; i <pageArray.length; i++) {
+        loader.addImage(pageArray[i]);
+    }
+    
+    // 起动
+    loader.start();
+    
+    // 进度
+    loader.addProgressListener(function(e) {
+        var NUM = Math.ceil(e.completedCount/e.totalCount*100);
+        console.log(NUM+'%');
+        $('.loading p').html(NUM+'%')
+    })
+    // 完成
+    loader.addCompletionListener(function() {
+        // for(i = 0; i <pageArray.length; i++) {
+        //     //pageArray[i].attr('src',pageArray[i].attr('data-src'));
+        //     $('img').each(
+        //         function(){
+        //             $(this).attr('src',$(this).attr('data-src'));
+        //         }
+        //     );
+        // }
+        // <img src-data="images/8-2.png" class="s8-2 piece animated bounceInDown delay1" />
+        // 加载完成，把之前的 data-src 改成 src
+        console.log('完成');
+        $(".loading").hide();
+
+        //key.play();
+        timer = setInterval(function(){
+            writeWord('words',words)
+        }, 100);
+    });
+
+</script>
+
+<script>
+    // 倒计时
+    var m = 03;//传个分钟数到这里
+    var s = "00";
+    var settime = null;
+    function showtime(){
+        if(m==0 &&s==0){
+            clearInterval(settime); 
+            $(".baidian").hide();
+            $('.popBox6,.fridgePop6').fadeOut(500);
+            $('.popBox9,.resultFail').fadeIn(500);
+            $('.popBox6,.fridgePop6').fadeOut(500);
+            $("#time").fadeOut();
+            return;
+        }
+        if(s==0){
+            m ="0" + (m -1);
+            s = 60;
+        }
+        s = s-1;
+        if (s<10 || s==0) {
+            s="0"+s;
+        }
+
+        $('#m').html(m);
+        $('#s').html(s);
+    }
+
+    //显示白点的公用方法，传白点类名，和多少毫秒后显示
+    var replaying = false;
+    function showBaidian(el,time){
+        msgBoxShow2 = true;
+        if(!replaying){
+            $('.baidian').hide();
+            el&&setTimeout(function(){$('.'+el).show();}, time);
+        }
+    }
+     //场景显示
+    function showScene(n){
+        $('.page'+n).fadeIn(500).siblings('.page').fadeOut(500);
+    }
+
+    //建立一个点击时相对应的关系对象
+    var msgBoxShow2 = true;
+    var clickObj = {
+        'car': function(){
+            $(".shouyeBg02").show().siblings(".shouyeBg01").hide();
+            !replaying&&$('#carOpen')[0].play();
+            !replaying&&$(".page1 .baidian.car").hide();
+            setTimeout(function(){showScene(2);!replaying&&showBaidian("carScreen",100);replaying&&$(".msgBox").hide();}, 1000);
+            
+        },
+        'tv': function(){$('.popBox2,.fridgePop2').fadeIn(500);!replaying&&$(".page1 .baidian.tv").hide();$(".msgBox").hide();},
+        'basket': function(){$('.basketImg02').fadeIn(500);!replaying&&$(".basket").hide();showBaidian('vr',500)},
+        'shafa': function(){
+            var carWords = '沙发上有一件白色的7号球衣'.split('');
+            $(".msgBox").show();
+            writeNewWord('msgBox',carWords);
+            $(".fridge").fadeIn(800);
+            $(".shafa").hide();
+        },
+        'fridge': function(){
+            $('.popBox,.fridgePop').fadeIn(500);
+            $(".page1 .baidian.fridge").hide();
+
+            var carWords = '互联网冰箱内水果有点多，找找房间中哪里可以存放水果的'.split('');
+            $(".msgBox").show();
+            writeNewWord('msgBox',carWords);
+        },
+        'mimamen': function(){$('.popBox6,.fridgePop6').fadeIn(500);!replaying&&$(".page1 .baidian.mimamen").hide();$('.msgBox42').hide();},
+        'vr':function(){
+            !replaying&&$(".vr").hide();
+            $(".popBox3,.fridgePop3").fadeIn(500);
+            var carWords = 'VR手机全景投射出一件蓝色8号球衣'.split('');
+            $(".msgBox").show();
+            writeNewWord('msgBox',carWords);
+        },
+        'landBtn':function(){
+            setTimeout(function(){window.location.href = window.location.href.split('#')[0]+'#maodian';}, 250);
+
+            //开始倒计时
+            m = 03;//传个分钟数到这里
+            s = "00";
+            settime = setInterval(function(){
+                showtime();
+            },1000);
+            //落地页消失，场景一出现,倒计时出现
+            //
+            $("#time").fadeIn();
+            $(".sound-on").fadeIn();
+            $('#mp3')[0].play();
+            $(".landing").fadeOut(500).siblings('.page1').fadeIn(500);
+            $(".page1 .baidian.shafa").fadeIn(500);
+            $(".popBox9").css("display","none");
+            var carWords = '找出藏在密室中YunOS产品上的白点，获取4个数字解锁密室'.split('');
+            $(".msgBox").show();
+            writeNewWord('msgBox',carWords);
+            
+        },
+        'carScreen':function(){     
+            $('.carScreen').hide();      
+            var carWords = '无法打开互联网汽车10.4英寸超大中控屏'.split('');
+            $(".msgBox").show();
+            $('.carMsg').hide();
+            writeNewWord('msgBox',carWords,'msgBox');  
+            showBaidian("carWheel",1500)          
+        },
+        'carWheel':function(){
+            $("#bangzhu")[0].play();
+            var carWords = ['你','好',',','有','什','么','能','够','帮','到','您','？'];
+            $(".carMsg").show();
+            $(".carMsg").addClass('carMsg_kb');
+            $('.carMusicbg').show();
+            $('.msgBox').hide();
+            $(".voiceBox").show();
+            writeNewWord('carMsgCon',carWords);
+            $(".carWheel").hide();
+            
+            setTimeout(function(){$(".openWindowBtn").show();$(".voiceBox").hide();},1500);
+        },
+        'openWindowBtn':function(){
+            $(".carMsg").removeClass('carMsg_kb');
+            $('.carMusicbg').hide();
+            $(".carScreen,.carWheel").hide();
+            $("#tianchuang")[0].play();
+            var carWords = ['正','在','帮','您','开','启','天','窗','…'];
+            $(".carMsg").show();
+            $('.msgBox').hide();
+            $(".voiceBox").show();
+            $(".openWindowBtn").hide();
+            writeNewWord('carMsgCon',carWords);
+            $(".scene2Bg01").animate({top:'100%'},1000).siblings('.scene2Bg02').animate({top:'0'},1000,function(){
+                $(".voiceBox").hide();
+                var carWords = '无人机连接成功，画面正在回传互联网汽车'.split('');
+                setTimeout(function(){
+                    writeNewWord('carMsgCon',carWords);
+                    setTimeout(function(){$(".openWindowBtn").addClass('chakanBtn').show().attr('data-class','seeCarScreem')}, 2500);
+                }, 1000);
+            });
+        },
+        'seeCarScreem':function(){
+            $(".openWindowBtn").hide();
+            $(".scene2Bg01").animate({top:0},1000).siblings('.scene2Bg02').animate({top:'-100%'},1000,function(){
+                $(".carScreen").show().attr('data-class','seeCarScreemNew');  
+            });
+        },
+        'seeCarScreemNew':function(){
+            $('.newScreen').fadeIn(500);
+            $(".carMsg").show();
+            $(".carScreen").hide();
+            $(".openWindowBtn").hide();
+            var carWords = '无人机航拍画面传输中，发现绿色3号球衣'.split('');
+            writeNewWord('carMsgCon',carWords);
+            setTimeout(function(){$(".openWindowBtn").addClass('fanhuiBtn').show().attr('data-class','carRoom')},1500)
+        },
+        'carRoom':function(){
+            $(".openWindowBtn").attr("data-class","newBack");
+            $(".carScreen").hide();
+            $(".page1").fadeIn(500).siblings('.page').fadeOut(500);
+            showBaidian('mimamen',500);
+        },
+        'newBack':function(){
+            $(".page2").fadeOut(500).siblings('.page1').fadeIn(500);
+            setTimeout(function(){msgBoxShow2&&$(".msgBox").show();}, 500);
+        },
+        'rePlay':function(){//重新玩
+            replaying = true;
+            $('.popBox6,.fridgePop6').fadeOut(500);
+            $(".msgBox").hide();
+            msgBoxShow2 = false;
+            $('#popBox42').hide();
+            $(".vr,.car,.mimamen,.tv,.shafa").show();
+        },
+        'congwanBtn':function(){//再玩一遍
+            window.location.href = window.location.href.split('#')[0];
+        }
+    }
+
+    //点击白点 执行对应的方法
+    for(var i=0;i<$(".click").length;i++){
+        $(".click")[i].addEventListener('touchstart',function(){
+            var className = $(this).attr('data-class');//获取点击的对象的属性 data-class 执行相对应的钩子函数
+            console.log('点击的是:'+className);
+            clickObj[className]&&clickObj[className](); //直接执行对应的函数(hook机制)
+        })
+    }
+
+    //点击电视切换女球迷
+    var tvClickTimes = true;
+    $(".popBox2")[0].addEventListener('touchstart',function(){
+        if(tvClickTimes){
+            $("#girl")[0].play();
+            var carWords = '发现一件橙色5号球衣'.split('');
+            $(".msgBox").show();
+            writeNewWord('msgBox',carWords);
+            tvClickTimes = false;
+        }
+        $(".popBox2 img").attr("src", "images/tv03.png");
+        $(".popBox2").addClass('popBox22');
+        $(".popBox22")[0].addEventListener('touchstart',function(){
+            tvClickTimes = true;
+            $(".popBox2").fadeOut(500);
+            $(".page1 .baidian.car").fadeIn(500);
+        });
+    });
+
+    //弹层消失
+    $(".popBox")[0].addEventListener('touchstart',function(){
+         $(".popBox").fadeOut(500);
+         $(".page1 .baidian.basket").fadeIn(500);
+    });
+    $(".popBox3")[0].addEventListener('touchstart',function(){
+         $(".popBox3").fadeOut(500);
+         $(".page1 .baidian.tv").fadeIn(500);
+
+    });
+
+
+    //密码
+    var clickTimes = 0;
+    for(var i=0;i<$(".bottom9 span").length;i++){
+        $(".bottom9 span")[i].addEventListener('touchstart',function(){
+            // $("#mima")[0].play();
+            var n = $(this).attr('data-num');
+            if(n=='-'){//删除一个
+                clickTimes<=0?clickTimes=0:clickTimes--;
+                $('.top4 span').eq(clickTimes).text('');
+                return;
+            }
+            if(n=="*"){//重新输入
+                clickTimes = 0;
+                $('.top4 span').text('');
+                return;
+            }
+            $('.top4 span').eq(clickTimes).text(n);
+            if(clickTimes==3){
+                setTimeout(chekcMima, 300);
+                return;
+            }
+            clickTimes++;
+        });
+    }
+    function chekcMima(){
+        if($(".top4 span").eq(0).text()=='7'&&$(".top4 span").eq(1).text()=='8'&&$(".top4 span").eq(2).text()=='5'&&$(".top4 span").eq(3).text()=='3'){
+            $('#mp3')[0].pause();
+            $('#jinqiu')[0].play();
+            $('.popBox6,.fridgePop6').fadeOut(500);
+            $('.popBox5,.fridgePop5').show();
+            $('.msgBox').hide();
+            $('#popBox42').hide();
+            $(".baidian").fadeOut(100);
+            clearInterval(settime); 
+        }else{
+            clickTimes = 0;
+            $(".top4 span").text('');
+            $(".msgBox").hide();
+            var carWords = '密码错误解锁失败'.split('');
+            $('.msgBox42').show();
+            writeNewWord('mimaMsgCon',carWords);
+            $(".baidian").fadeOut(100);
+        }
+    }
+    
+</script>
+
+<script>
+
+$('.sound-on').bind('touchstart' , function (){
+    if ($(this).hasClass('sound-off')) {
+        $('#mp3')[0].play();
+        $(this).removeClass('sound-off');
+    }else if(!$(this).hasClass('sound-off')){
+        $('#mp3')[0].pause();
+        $('.sound-on').addClass('sound-off');
+    };
+});
+
+
+// function postData(name,phone){
+//     $.ajax({
+//         url:"http://106.14.26.236/yunos/index.php/user/save",
+//         data:{
+//             name:name,
+//             phone:phone
+//         },   
+//         dataType:"jsonp",
+//         jsonpCallback:"callback",
+//         success:function(data){
+//             $(".share_page").show();
+//         }
+//    });
+// }
+
+
+// $(".tijiaoBtn").click(function(event) {
+//     $('#tijiao')[0].play();
+//     var aa = $(".nameMsg input").val();
+//     var bb = $(".phoneMsg input").val();
+//     postData(aa,bb);
+// });
+
+// $(".share_page").click(function(event) {
+//     $(".share_page").hide();
+// });
+
+
+$(".choujiangBtn").click(function(event) {
+    $(".share_page").show();
+});
+$(".share_page").click(function(event) {
+    $(".share_page").hide();
+});
+
+</script>
